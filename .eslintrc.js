@@ -27,5 +27,7 @@ module.exports = {
       "error",
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
+    // Redundant with TS
+    "react/prop-types": false
   },
 }

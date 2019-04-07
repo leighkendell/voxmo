@@ -1,0 +1,29 @@
+@import '../../sass-partials/variables';
+
+// ==========================================================================
+// Global Styles
+// ==========================================================================
+
+// Box Sizing
+// ==========================================================================
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+// Typography
+// ==========================================================================
+body {
+  color: $color-text-default;
+  font-family: $font-family-default;
+  font-size: $font-size-base;
+  line-height: 1.4;
+}

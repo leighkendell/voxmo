@@ -1,0 +1,37 @@
+@import '../../sass-partials/variables';
+
+$border: 2px;
+
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 1em 1.6em;
+  transition: 0.25s ease-in-out;
+  border: $border solid transparent;
+  border-radius: 2em;
+  background-clip: padding-box;
+  background-color: $color-black-pearl;
+  color: $color-light;
+  font-family: $font-family-default;
+  appearance: none;
+  font-size: 1rem;
+  font-weight: bold;
+
+  &:hover {
+    background-color: transparent;
+    color: $color-black-pearl;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -$border;
+    border-radius: inherit;
+    background-image: linear-gradient(120deg, $color-button-gradient-1, $color-button-gradient-2);
+  }
+}
