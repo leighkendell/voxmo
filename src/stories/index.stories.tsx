@@ -3,7 +3,7 @@ import React from 'react';
 import { themes } from '@storybook/theming';
 
 import { storiesOf, addParameters } from '@storybook/react';
-import { Button, Layout, CircleButton } from '../components';
+import { Button, Layout, CircleButton, SummaryCard } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
 
@@ -28,3 +28,5 @@ storiesOf('Button', module)
       <CircleButton label="Play button" icon="stop" secondary />
     </div>
   ));
+
+storiesOf('Summary Card', module).add('Card', () => <SummaryCard />);

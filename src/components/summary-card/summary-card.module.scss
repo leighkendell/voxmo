@@ -1,0 +1,8 @@
+@import '../../sass-partials/variables';
+
+.card {
+  padding: 25px;
+  border-radius: 4px;
+  background-color: $color-card;
+  color: $color-light;
+}
