@@ -6,13 +6,13 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   secondary?: boolean;
 }
 
-const Button: React.FC<Props> = ({ children, secondary }) => {
+const Button: React.FC<Props> = ({ children, secondary, ...props }) => {
   const className = classNames(styles.button, {
     [styles.secondary]: secondary,
   });
 
   return (
-    <button type="button" className={className}>
+    <button type="button" className={className} {...props}>
       {children}
     </button>
   );

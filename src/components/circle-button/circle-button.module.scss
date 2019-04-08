@@ -1,0 +1,69 @@
+@import '../../sass-partials/variables';
+
+.button {
+  --gradient-1: #{$color-dodger-blue};
+  --gradient-2: #{$color-bright-turquoise};
+  --play: polygon(85% 50%, 15% 0, 15% 0, 15% 100%);
+  --stop: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  --clip: var(--play);
+
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  appearance: none;
+  transition: 0.25s ease-in-out;
+  border: 0;
+  border-radius: 100%;
+  outline: 0;
+  background-image: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    &::after {
+      opacity: 0.85;
+    }
+  }
+
+  &::before,
+  &::after {
+    transition: inherit;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: $color-light;
+    clip-path: var(--clip);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: 0 0 25px var(--gradient-1);
+  }
+}
+
+.play {
+  --clip: var(--play);
+}
+
+.stop {
+  --clip: var(--stop);
+}
+
+.secondary {
+  --gradient-1: #{$color-button-gradient-3};
+  --gradient-2: #{$color-button-gradient-4};
+}

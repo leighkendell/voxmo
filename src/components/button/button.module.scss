@@ -28,7 +28,8 @@ $border: 2px;
     color: var(--background);
   }
 
-  &:focus {
+  &:focus,
+  &:hover {
     &::before {
       opacity: 0.85;
     }
