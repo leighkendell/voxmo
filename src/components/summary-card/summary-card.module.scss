@@ -3,9 +3,9 @@
 .card {
   display: grid;
   grid-template-areas:
-    "button content1 more"
-    "button content2 more"
-    "button content3 more";
+    "button content1 kebab"
+    "button content2 kebab"
+    "button content3 kebab";
   grid-template-columns: 50px 1fr 25px;
   padding: 25px;
   column-gap: $spacing-small;
@@ -15,9 +15,13 @@
 
   // Button
   > * {
-    &:nth-child(1) {
+    &:first-child {
       grid-area: button;
       align-self: center;
+    }
+
+    &:last-child {
+      grid-area: kebab;
     }
   }
 }

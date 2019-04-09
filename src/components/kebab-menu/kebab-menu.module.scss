@@ -7,21 +7,32 @@
 }
 
 .button {
+  position: relative;
   appearance: none;
   width: inherit;
   height: inherit;
   margin: 0;
   padding: 0;
+  transition: 0.25s ease-in-out;
   border: 0;
   border-radius: 0;
   outline: 0;
   background-color: transparent;
   color: $color-light;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    color: $color-bright-turquoise;
+  }
 }
 
 .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: inherit;
-  height: inherit;
+  height: 7px;
 
   * {
     stroke: currentColor;
@@ -30,7 +41,7 @@
 
 .menu {
   position: absolute;
-  top: $spacing-small;
+  top: $spacing-small / 1.5;
   right: 0;
   width: 160px;
   margin: 0;

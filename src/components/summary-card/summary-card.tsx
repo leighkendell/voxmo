@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './summary-card.module.scss';
-import CircleButton from '../circle-button/circle-button';
+import { KebabMenuItem, KebabMenu, CircleButton } from '..';
 
 interface Props {
   title: string;
@@ -26,6 +26,10 @@ const SummaryCard: React.FC<Props> = ({ title, date, duration }) => {
       <strong className={styles.title}>{title}</strong>
       <span className={styles.meta}>{date}</span>
       <span className={styles.meta}>{duration}</span>
+      <KebabMenu>
+        <KebabMenuItem>Rename</KebabMenuItem>
+        <KebabMenuItem>Delete</KebabMenuItem>
+      </KebabMenu>
     </div>
   );
 };
