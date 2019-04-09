@@ -1,0 +1,59 @@
+@import '../../sass-partials/variables';
+
+.wrapper {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.button {
+  appearance: none;
+  width: inherit;
+  height: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background-color: transparent;
+  color: $color-light;
+}
+
+.icon {
+  width: inherit;
+  height: inherit;
+
+  * {
+    stroke: currentColor;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: $spacing-small;
+  right: 0;
+  width: 160px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba($color-light, 0.15);
+  border-radius: 4px;
+  background-color: $color-card;
+  list-style: none;
+}
+
+.menuItem {
+  margin: 0;
+  padding: $spacing-small / 1.25;
+  transition: 0.25s ease-in-out;
+  border-bottom: inherit;
+  color: $color-light;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color-light, 0.05);
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}

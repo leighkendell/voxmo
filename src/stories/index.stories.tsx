@@ -3,7 +3,7 @@ import React from 'react';
 import { themes } from '@storybook/theming';
 
 import { storiesOf, addParameters } from '@storybook/react';
-import { Button, Layout, CircleButton, SummaryCard } from '../components';
+import { Button, Layout, CircleButton, SummaryCard, KebabMenu, KebabMenuItem } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
 
@@ -29,6 +29,15 @@ storiesOf('Button', module)
     </div>
   ));
 
-storiesOf('Summary Card', module).add('Card', () => (
-  <SummaryCard title="My cool recording" date="10 September, 2018" duration="0:15:00" />
-));
+storiesOf('Summary Card', module)
+  .add('Card', () => (
+    <SummaryCard title="My cool recording" date="10 September, 2018" duration="0:15:00" />
+  ))
+  .add('Kebab Menu', () => (
+    <div style={{ padding: '20px 200px' }}>
+      <KebabMenu>
+        <KebabMenuItem>woop</KebabMenuItem>
+        <KebabMenuItem>woop</KebabMenuItem>
+      </KebabMenu>
+    </div>
+  ));
