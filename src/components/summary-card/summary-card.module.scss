@@ -1,8 +1,44 @@
 @import '../../sass-partials/variables';
 
 .card {
+  display: grid;
+  grid-template-areas:
+    "button content1 more"
+    "button content2 more"
+    "button content3 more";
+  grid-template-columns: 50px 1fr 25px;
   padding: 25px;
+  column-gap: $spacing-small;
   border-radius: 4px;
-  background-color: $color-card;
+  background-color: rgba($color-card, 0.95);
   color: $color-light;
+
+  // Button
+  > * {
+    &:nth-child(1) {
+      grid-area: button;
+      align-self: center;
+    }
+  }
+}
+
+.title,
+.meta {
+  display: block;
+}
+
+.title {
+  grid-area: content1;
+}
+
+.meta {
+  font-size: $font-size-small;
+
+  &:nth-of-type(1) {
+    grid-area: content2;
+  }
+
+  &:nth-of-type(2) {
+    grid-area: content3;
+  }
 }

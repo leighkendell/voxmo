@@ -29,4 +29,6 @@ storiesOf('Button', module)
     </div>
   ));
 
-storiesOf('Summary Card', module).add('Card', () => <SummaryCard />);
+storiesOf('Summary Card', module).add('Card', () => (
+  <SummaryCard title="My cool recording" date="10 September, 2018" duration="0:15:00" />
+));
