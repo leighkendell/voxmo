@@ -22,7 +22,8 @@
   cursor: pointer;
 
   &:hover,
-  &.active {
+  &.active,
+  &:focus {
     color: $color-bright-turquoise;
   }
 }
@@ -57,10 +58,13 @@
   padding: $spacing-small / 1.25;
   transition: 0.25s ease-in-out;
   border-bottom: inherit;
+  outline: 0;
   color: $color-light;
+  font-size: $font-size-small;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: rgba($color-light, 0.05);
   }
 

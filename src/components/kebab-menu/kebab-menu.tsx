@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
 import classNames from 'classnames';
 import styles from './kebab-menu.module.scss';
@@ -9,9 +9,32 @@ const KebabMenu: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonId = useUuid();
   const menuId = useUuid();
+  const menuRef = useRef<HTMLUListElement>(null);
 
   const toggleOpen: () => void = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleKeyup: (event: React.KeyboardEvent<HTMLButtonElement>) => void = (
+    event: React.KeyboardEvent<HTMLButtonElement>
+  ) => {
+    if (isOpen && event.keyCode === 13 && menuRef.current) {
+      menuRef.current.firstChild.focus();
+    }
+  };
+
+  const handleChildKeyup: (event: React.KeyboardEvent<HTMLLIElement>) => void = (
+    event: React.KeyboardEvent<HTMLLIElement>
+  ) => {
+    const { previousSibling, nextSibling } = event.currentTarget;
+
+    if (event.keyCode === 40 && nextSibling) {
+      (nextSibling as HTMLLIElement).focus();
+    }
+
+    if (event.keyCode === 38 && previousSibling) {
+      (previousSibling as HTMLLIElement).focus();
+    }
   };
 
   const spring = useSpring({
@@ -35,6 +58,7 @@ const KebabMenu: React.FC = ({ children }) => {
         aria-controls={menuId}
         aria-expanded={isOpen}
         onClick={toggleOpen}
+        onKeyUp={handleKeyup}
       >
         <KebabIcon className={styles.icon} role="img" />
       </button>
@@ -45,8 +69,14 @@ const KebabMenu: React.FC = ({ children }) => {
           role="menu"
           aria-labelledby={buttonId}
           style={spring}
+          tabIndex={-1}
+          ref={menuRef}
         >
-          {children}
+          {React.Children.map(children, child => {
+            return React.cloneElement(child, {
+              keyup: handleChildKeyup,
+            });
+          })}
         </animated.ul>
       )}
     </div>

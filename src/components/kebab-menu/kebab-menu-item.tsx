@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './kebab-menu.module.scss';
 
-const KebabMenuItem: React.FC = ({ children }) => (
-  <li className={styles.menuItem} role="menuitem">
+interface Props {
+  keyup: () => void;
+}
+
+const KebabMenuItem: React.FC<Props> = ({ children, keyup }) => (
+  <li className={styles.menuItem} role="menuitem" tabIndex={-1} onKeyUp={keyup}>
     {children}
   </li>
 );
