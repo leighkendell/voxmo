@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './kebab-menu.module.scss';
 
 interface Props {
-  keyup: () => void;
+  keyup?: () => void;
 }
 
 const KebabMenuItem: React.FC<Props> = ({ children, keyup }) => (

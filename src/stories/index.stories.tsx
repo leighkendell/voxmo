@@ -31,7 +31,12 @@ storiesOf('Button', module)
 
 storiesOf('Summary Card', module)
   .add('Card', () => (
-    <SummaryCard title="My cool recording" date="10 September, 2018" duration="0:15:00" />
+    <SummaryCard
+      title="My cool recording"
+      date="10 September, 2018"
+      duration="0:15:00"
+      audio="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
+    />
   ))
   .add('Kebab Menu', () => (
     <div style={{ padding: '20px 200px' }}>
