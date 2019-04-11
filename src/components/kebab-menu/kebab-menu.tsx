@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import classNames from 'classnames';
 import styles from './kebab-menu.module.scss';
 import { ReactComponent as KebabIcon } from '../../images/kebab-toggle.svg';
-import { useUuid } from '../../hooks';
+import { useUuid, useOutsideClick, useKeyPress } from '../../hooks';
 
 const KebabMenu: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +18,8 @@ const KebabMenu: React.FC = ({ children }) => {
   const handleKeyup: (event: React.KeyboardEvent<HTMLButtonElement>) => void = (
     event: React.KeyboardEvent<HTMLButtonElement>
   ) => {
-    if (isOpen && event.keyCode === 13 && menuRef.current) {
-      menuRef.current.firstChild.focus();
+    if (isOpen && event.keyCode === 13 && menuRef.current && menuRef.current.firstChild) {
+      (menuRef.current.firstChild as HTMLLIElement).focus();
     }
   };
 
@@ -36,6 +36,23 @@ const KebabMenu: React.FC = ({ children }) => {
       (previousSibling as HTMLLIElement).focus();
     }
   };
+
+  // Close the menu when clicking outside this component
+  useOutsideClick(menuRef, () => {
+    if (isOpen) {
+      toggleOpen();
+    }
+  });
+
+  // Close the menu when pressing Escape
+  const esc = useKeyPress('Escape');
+  if (esc && isOpen) {
+    if (document.activeElement) {
+      (document.activeElement as HTMLElement).blur();
+    }
+
+    toggleOpen();
+  }
 
   const spring = useSpring({
     opacity: isOpen ? 1 : 0,
@@ -73,7 +90,7 @@ const KebabMenu: React.FC = ({ children }) => {
           ref={menuRef}
         >
           {React.Children.map(children, child => {
-            return React.cloneElement(child, {
+            return React.cloneElement(child as React.ReactElement, {
               keyup: handleChildKeyup,
             });
           })}
