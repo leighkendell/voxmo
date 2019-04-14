@@ -1,0 +1,24 @@
+@import '../../sass-partials/variables';
+
+.bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8%;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: rgba($color-light, 0.15);
+  pointer-events: none;
+  clip-path: inset(calc(100% - 4px) 0 0 0);
+}
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  background-image: linear-gradient(120deg, $color-button-gradient-1, $color-button-gradient-2);
+}

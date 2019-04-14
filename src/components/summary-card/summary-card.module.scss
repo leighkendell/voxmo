@@ -2,6 +2,7 @@
 
 .card {
   display: grid;
+  position: relative;
   grid-template-areas:
     "button content1 kebab"
     "button content2 kebab"
@@ -13,13 +14,14 @@
   background-color: rgba($color-card, 0.95);
   color: $color-light;
 
-  // Button
   > * {
+    // Button
     &:first-child {
       grid-area: button;
       align-self: center;
     }
 
+    // Kebab menu
     &:last-child {
       grid-area: kebab;
     }

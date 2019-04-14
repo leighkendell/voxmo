@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import throttle from 'lodash/throttle';
 import styles from './summary-card.module.scss';
-import { KebabMenuItem, KebabMenu, CircleButton } from '..';
+import { KebabMenuItem, KebabMenu, CircleButton, ProgressBar } from '..';
 
 interface Props {
   title: string;
@@ -11,6 +12,7 @@ interface Props {
 const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState('00:00:00');
+  const [progress, setProgress] = useState(0);
   const audioEl = useRef<HTMLAudioElement>();
 
   // Format and update the duration state
@@ -20,17 +22,17 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
 
   // Handle end of playback
   useEffect(() => {
-    const setPlayBack: () => void = () => {
+    const handleEnded: () => void = () => {
       setPlaying(false);
     };
 
     if (audioEl.current) {
-      audioEl.current.addEventListener('ended', setPlayBack);
+      audioEl.current.addEventListener('ended', handleEnded);
     }
 
     return () => {
       if (audioEl.current) {
-        audioEl.current.removeEventListener('ended', setPlayBack);
+        audioEl.current.removeEventListener('ended', handleEnded);
       }
     };
   }, []);
@@ -48,6 +50,25 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
         };
       }
     }
+  }, []);
+
+  // Update the progress while playing
+  useEffect(() => {
+    const handleTimeUpdate: () => void = () => {
+      if (audioEl.current) {
+        setProgress((audioEl.current.currentTime / audioEl.current.duration) * 100);
+      }
+    };
+
+    if (audioEl.current) {
+      audioEl.current.addEventListener('timeupdate', throttle(handleTimeUpdate, 250));
+    }
+
+    return () => {
+      if (audioEl.current) {
+        audioEl.current.removeEventListener('timeupdate', handleTimeUpdate);
+      }
+    };
   }, []);
 
   // Toggle playback state and audio
@@ -75,6 +96,7 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
       <span className={styles.meta}>{duration}</span>
       {/* eslint-disable */}
       <audio ref={audioEl} src={audio} />
+      <ProgressBar value={progress} />
       {/* eslint-enable */}
       <KebabMenu>
         <KebabMenuItem>Rename</KebabMenuItem>
