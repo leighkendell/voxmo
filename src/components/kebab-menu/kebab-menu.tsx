@@ -9,6 +9,7 @@ const KebabMenu: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonId = useUuid();
   const menuId = useUuid();
+  const parentRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
   const toggleOpen: () => void = () => {
@@ -38,7 +39,7 @@ const KebabMenu: React.FC = ({ children }) => {
   };
 
   // Close the menu when clicking outside this component
-  useOutsideClick(menuRef, () => {
+  useOutsideClick(parentRef, () => {
     if (isOpen) {
       toggleOpen();
     }
@@ -65,7 +66,7 @@ const KebabMenu: React.FC = ({ children }) => {
   });
 
   return (
-    <div className={styles.wrapper}>
+    <div ref={parentRef} className={styles.wrapper}>
       <button
         id={buttonId}
         className={buttonClasses}

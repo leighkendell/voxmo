@@ -30,6 +30,14 @@ storiesOf('Button', module)
   ));
 
 storiesOf('Summary Card', module)
+  .add('Kebab Menu', () => (
+    <div style={{ padding: '20px 200px' }}>
+      <KebabMenu>
+        <KebabMenuItem>Hello</KebabMenuItem>
+        <KebabMenuItem>People</KebabMenuItem>
+      </KebabMenu>
+    </div>
+  ))
   .add('Card', () => (
     <SummaryCard
       title="My cool recording"
@@ -37,12 +45,4 @@ storiesOf('Summary Card', module)
       duration="0:15:00"
       audio="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
     />
-  ))
-  .add('Kebab Menu', () => (
-    <div style={{ padding: '20px 200px' }}>
-      <KebabMenu>
-        <KebabMenuItem>woop</KebabMenuItem>
-        <KebabMenuItem>woop</KebabMenuItem>
-      </KebabMenu>
-    </div>
   ));
