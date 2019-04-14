@@ -5,13 +5,18 @@ import { KebabMenuItem, KebabMenu, CircleButton } from '..';
 interface Props {
   title: string;
   date: string;
-  duration: string;
   audio: string;
 }
 
-const SummaryCard: React.FC<Props> = ({ title, date, duration, audio }) => {
+const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
   const [playing, setPlaying] = useState(false);
+  const [duration, setDuration] = useState('00:00:00');
   const audioEl = useRef<HTMLAudioElement>();
+
+  // Format and update the duration state
+  const formatDuration: (durationSeconds: number) => void = (durationSeconds: number) => {
+    setDuration(new Date(durationSeconds * 1000).toISOString().substr(11, 8));
+  };
 
   // Handle end of playback
   useEffect(() => {
@@ -30,6 +35,22 @@ const SummaryCard: React.FC<Props> = ({ title, date, duration, audio }) => {
     };
   }, []);
 
+  // Set duration once metadata loads
+  useEffect(() => {
+    if (audioEl.current) {
+      if (audioEl.current.duration) {
+        formatDuration(audioEl.current.duration);
+      } else {
+        audioEl.current.onloadedmetadata = () => {
+          if (audioEl.current) {
+            formatDuration(audioEl.current.duration);
+          }
+        };
+      }
+    }
+  }, []);
+
+  // Toggle playback state and audio
   const togglePlayBack: () => void = () => {
     if (audioEl.current) {
       if (playing) {
@@ -52,9 +73,9 @@ const SummaryCard: React.FC<Props> = ({ title, date, duration, audio }) => {
       <strong className={styles.title}>{title}</strong>
       <span className={styles.meta}>{date}</span>
       <span className={styles.meta}>{duration}</span>
-      <audio ref={audioEl} src={audio}>
-        <track kind="captions" />
-      </audio>
+      {/* eslint-disable */}
+      <audio ref={audioEl} src={audio} />
+      {/* eslint-enable */}
       <KebabMenu>
         <KebabMenuItem>Rename</KebabMenuItem>
         <KebabMenuItem>Delete</KebabMenuItem>

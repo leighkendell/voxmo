@@ -42,7 +42,6 @@ storiesOf('Summary Card', module)
     <SummaryCard
       title="My cool recording"
       date="10 September, 2018"
-      duration="0:15:00"
       audio="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
     />
   ));
