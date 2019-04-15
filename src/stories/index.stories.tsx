@@ -11,6 +11,7 @@ import {
   KebabMenu,
   KebabMenuItem,
   ProgressBar,
+  Pattern,
 } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
@@ -63,5 +64,17 @@ storiesOf('Summary Card', module)
         date="10 September, 2018"
         audio="https://doc-0c-6c-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/ba2n43tdgk4c47o38eaqtui6bno64u44/1555250400000/16178610560955219818/*/1avt9FBdAM51yKKX6IXActgpsTSio1Eli"
       />
+    </div>
+  ));
+
+storiesOf('Pattern', module)
+  .add('Header', () => (
+    <div style={{ padding: '20px' }}>
+      <Pattern />
+    </div>
+  ))
+  .add('Circle', () => (
+    <div style={{ padding: '20px' }}>
+      <Pattern transform />
     </div>
   ));
