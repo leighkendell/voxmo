@@ -13,7 +13,7 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState('00:00:00');
   const [progress, setProgress] = useState(0);
-  const audioEl = useRef<HTMLAudioElement>();
+  const audioEl = useRef<HTMLAudioElement>(null);
 
   // Format and update the duration state
   const formatDuration: (durationSeconds: number) => void = (durationSeconds: number) => {
@@ -94,10 +94,10 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
       <strong className={styles.title}>{title}</strong>
       <span className={styles.meta}>{date}</span>
       <span className={styles.meta}>{duration}</span>
-      {/* eslint-disable */}
+      {/* eslint-disable jsx-a11y/media-has-caption */}
       <audio ref={audioEl} src={audio} />
-      <ProgressBar value={progress} />
       {/* eslint-enable */}
+      <ProgressBar value={progress} />
       <KebabMenu>
         <KebabMenuItem>Rename</KebabMenuItem>
         <KebabMenuItem>Delete</KebabMenuItem>
