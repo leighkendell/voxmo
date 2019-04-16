@@ -12,6 +12,7 @@ import {
   KebabMenuItem,
   ProgressBar,
   Pattern,
+  ButtonBar,
 } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
@@ -77,4 +78,13 @@ storiesOf('Pattern', module)
     <div style={{ padding: '20px' }}>
       <Pattern transform />
     </div>
+  ));
+
+storiesOf('Button Bar', module)
+  .add('Default', () => <ButtonBar />)
+  .add('With Buttons', () => (
+    <ButtonBar>
+      <Button secondary>Cancel</Button>
+      <Button>Done</Button>
+    </ButtonBar>
   ));

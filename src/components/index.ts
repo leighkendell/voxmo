@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 export { default as Button } from './button/button';
+export { default as ButtonBar } from './button-bar/button-bar';
 export { default as CircleButton } from './circle-button/circle-button';
 export { default as KebabMenu } from './kebab-menu/kebab-menu';
 export { default as KebabMenuItem } from './kebab-menu/kebab-menu-item';
