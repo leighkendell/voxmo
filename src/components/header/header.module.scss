@@ -1,0 +1,12 @@
+@import '../../sass-partials/variables';
+
+.header {
+  padding: $spacing-small;
+  text-align: center;
+}
+
+.text {
+  margin: 0;
+  color: $color-light;
+  font-size: $font-size-large;
+}

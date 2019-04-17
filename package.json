@@ -39,11 +39,11 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@storybook/addon-actions": "^5.0.8",
-    "@storybook/addon-info": "^5.0.8",
-    "@storybook/addon-links": "^5.0.8",
-    "@storybook/addons": "^5.0.8",
-    "@storybook/react": "^5.0.8",
+    "@storybook/addon-actions": "^5.0.9",
+    "@storybook/addon-info": "^5.0.9",
+    "@storybook/addon-links": "^5.0.9",
+    "@storybook/addons": "^5.0.9",
+    "@storybook/react": "^5.0.9",
     "@types/classnames": "^2.2.7",
     "@types/nanoid": "^1.2.1",
     "@types/storybook__addon-actions": "^3.4.2",
@@ -55,9 +55,9 @@
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.17.0",
     "react-docgen-typescript-loader": "^3.1.0",
-    "stylelint": "^10.0.0",
+    "stylelint": "^10.0.1",
     "stylelint-config-property-sort-order-smacss": "^4.0.2",
     "stylelint-config-standard": "^18.3.0",
-    "stylelint-scss": "^3.5.4"
+    "stylelint-scss": "^3.6.0"
   }
 }

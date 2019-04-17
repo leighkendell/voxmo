@@ -13,6 +13,7 @@ import {
   ProgressBar,
   Pattern,
   ButtonBar,
+  Header,
 } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
@@ -48,7 +49,7 @@ storiesOf('Summary Card', module)
       </KebabMenu>
     </div>
   ))
-  .add('Progress bar', () => (
+  .add('Progress Bar', () => (
     <div style={{ padding: '20px', maxWidth: '500px' }}>
       <ProgressBar value={65} />
     </div>
@@ -87,4 +88,13 @@ storiesOf('Button Bar', module)
       <Button secondary>Cancel</Button>
       <Button>Done</Button>
     </ButtonBar>
+  ));
+
+storiesOf('Header', module)
+  .add('Default', () => <Header>Recordings</Header>)
+  .add('With Pattern', () => (
+    <>
+      <Pattern />
+      <Header>Recordings</Header>
+    </>
   ));
