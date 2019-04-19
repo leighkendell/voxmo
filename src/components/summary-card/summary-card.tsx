@@ -16,7 +16,9 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
   const audioEl = useRef<HTMLAudioElement>(null);
 
   // Format and update the duration state
-  const formatDuration: (durationSeconds: number) => void = (durationSeconds: number) => {
+  const formatDuration: (durationSeconds: number) => void = (
+    durationSeconds: number
+  ) => {
     setDuration(new Date(durationSeconds * 1000).toISOString().substr(11, 8));
   };
 
@@ -56,12 +58,17 @@ const SummaryCard: React.FC<Props> = ({ title, date, audio }) => {
   useEffect(() => {
     const handleTimeUpdate: () => void = () => {
       if (audioEl.current) {
-        setProgress((audioEl.current.currentTime / audioEl.current.duration) * 100);
+        setProgress(
+          (audioEl.current.currentTime / audioEl.current.duration) * 100
+        );
       }
     };
 
     if (audioEl.current) {
-      audioEl.current.addEventListener('timeupdate', throttle(handleTimeUpdate, 250));
+      audioEl.current.addEventListener(
+        'timeupdate',
+        throttle(handleTimeUpdate, 250)
+      );
     }
 
     return () => {

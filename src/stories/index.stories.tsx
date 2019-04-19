@@ -14,6 +14,7 @@ import {
   Pattern,
   ButtonBar,
   Header,
+  Input,
 } from '../components';
 
 addParameters({ options: { theme: themes.dark } });
@@ -98,3 +99,7 @@ storiesOf('Header', module)
       <Header>Recordings</Header>
     </>
   ));
+
+storiesOf('Forms', module).add('Input', () => (
+  <Input label="Recording name" type="text" required />
+));

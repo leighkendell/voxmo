@@ -20,7 +20,7 @@ module.exports = {
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 100
+        "printWidth": 80
       }
     ],
     "@typescript-eslint/explicit-function-return-type": [
@@ -28,6 +28,9 @@ module.exports = {
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
     // Redundant with TS
-    "react/prop-types": false
+    "react/prop-types": false,
+    // A11y
+    "jsx-a11y/label-has-for": false,
+    "jsx-a11y/label-has-associated-control": 2
   },
 }

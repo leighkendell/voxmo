@@ -19,14 +19,19 @@ const KebabMenu: React.FC = ({ children }) => {
   const handleKeyup: (event: React.KeyboardEvent<HTMLButtonElement>) => void = (
     event: React.KeyboardEvent<HTMLButtonElement>
   ) => {
-    if (isOpen && event.keyCode === 13 && menuRef.current && menuRef.current.firstChild) {
+    if (
+      isOpen &&
+      event.keyCode === 13 &&
+      menuRef.current &&
+      menuRef.current.firstChild
+    ) {
       (menuRef.current.firstChild as HTMLLIElement).focus();
     }
   };
 
-  const handleChildKeyup: (event: React.KeyboardEvent<HTMLLIElement>) => void = (
+  const handleChildKeyup: (
     event: React.KeyboardEvent<HTMLLIElement>
-  ) => {
+  ) => void = (event: React.KeyboardEvent<HTMLLIElement>) => {
     const { previousSibling, nextSibling } = event.currentTarget;
 
     if (event.keyCode === 40 && nextSibling) {
@@ -57,7 +62,9 @@ const KebabMenu: React.FC = ({ children }) => {
 
   const spring = useSpring({
     opacity: isOpen ? 1 : 0,
-    transform: isOpen ? 'translate3d(0px, 0px, 0px)' : 'translate3d(0px, 5px, 0px)',
+    transform: isOpen
+      ? 'translate3d(0px, 0px, 0px)'
+      : 'translate3d(0px, 5px, 0px)',
     pointerEvents: isOpen ? 'auto' : 'none',
   });
 

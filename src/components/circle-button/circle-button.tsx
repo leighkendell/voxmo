@@ -8,13 +8,20 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   secondary?: boolean;
 }
 
-const CircleButton: React.FC<Props> = ({ label, secondary, icon, ...props }) => {
+const CircleButton: React.FC<Props> = ({
+  label,
+  secondary,
+  icon,
+  ...props
+}) => {
   const className = classNames(styles.button, {
     [styles.secondary]: secondary,
     [styles.play]: icon === 'play',
     [styles.stop]: icon === 'stop',
   });
-  return <button type="button" className={className} aria-label={label} {...props} />;
+  return (
+    <button type="button" className={className} aria-label={label} {...props} />
+  );
 };
 
 export default CircleButton;

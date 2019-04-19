@@ -1,0 +1,64 @@
+@import '../../sass-partials/variables';
+
+.wrapper {
+  display: inline-block;
+  position: relative;
+  margin: $spacing-medium 0;
+  border-radius: 1000px;
+}
+
+.input,
+.label {
+  display: block;
+  font-family: $font-family-default;
+  font-size: $font-size-medium;
+}
+
+.label {
+  --focus: translateY(calc(-50% - #{$font-size-medium / 2} - #{$spacing-small} / 2)) scale(0.85);
+
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform: var(--focus);
+  transition: 0.25s ease-in-out;
+  opacity: 0.85;
+  color: $color-light;
+  pointer-events: none;
+}
+
+.empty {
+  + .label {
+    transform: translateY(0) scale(1);
+    color: currentColor;
+  }
+}
+
+.input {
+  display: block;
+  padding: 1.5em 2em;
+  transition: border-color 0.25s ease-in-out;
+  border: 0;
+  border: 4px solid transparent;
+  border-radius: inherit;
+  outline: 0;
+  text-align: center;
+
+  &:focus {
+    border-color: $color-orange;
+
+    + .label {
+      transform: var(--focus);
+      color: $color-light;
+    }
+  }
+
+  &:valid:focus {
+    border-color: $color-green;
+  }
+}
