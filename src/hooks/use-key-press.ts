@@ -5,14 +5,14 @@ const useKeyPress: (targetKey: string) => boolean = (targetKey: string) => {
   const [keyPressed, setKeyPressed] = useState(false);
 
   // If pressed key is our target key then set to true
-  const downHandler = ({ key }): any => {
+  const downHandler: (event: KeyboardEvent) => void = ({ key }) => {
     if (key === targetKey) {
       setKeyPressed(true);
     }
   };
 
   // If released key is our target key then set to false
-  const upHandler = ({ key }): any => {
+  const upHandler: (event: KeyboardEvent) => void = ({ key }) => {
     if (key === targetKey) {
       setKeyPressed(false);
     }
@@ -22,6 +22,7 @@ const useKeyPress: (targetKey: string) => boolean = (targetKey: string) => {
   useEffect(() => {
     window.addEventListener('keydown', downHandler);
     window.addEventListener('keyup', upHandler);
+
     // Remove event listeners on cleanup
     return () => {
       window.removeEventListener('keydown', downHandler);

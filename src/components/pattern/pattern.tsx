@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSpring, animated, config } from 'react-spring';
-import { toCircle } from 'flubber';
 import styles from './pattern.module.scss';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { toCircle } = require('flubber');
 
 interface Props {
   transform?: boolean;
@@ -26,7 +28,7 @@ const Pattern: React.FC<Props> = ({ transform }) => {
 
   // The SVG used for clip-path
   const mask = (
-    <svg width="0" height="0" viewBox="0 0 400 400" aria-hidden="true">
+    <svg className={styles.mask} viewBox="0 0 400 400" aria-hidden="true">
       <defs>
         <clipPath
           id="header-mask"
