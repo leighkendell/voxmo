@@ -1,5 +1,5 @@
 import React from 'react';
-import { Location, Router, WindowLocation } from '@reach/router';
+import { Router, WindowLocation } from '@reach/router';
 import { useTransition, animated } from 'react-spring';
 import styles from './app-router.module.scss';
 

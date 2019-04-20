@@ -6,7 +6,7 @@ const Home: React.FC<RouteComponentProps> = () => (
   <>
     <Header>Recordings</Header>
     <ButtonBar>
-      <Button link="/record">New Recording</Button>
+      <Button link="/record">New recording</Button>
     </ButtonBar>
   </>
 );

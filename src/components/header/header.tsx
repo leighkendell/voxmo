@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 import styles from './header.module.scss';
 
 const Header: React.FC = ({ children }) => {
@@ -10,6 +10,7 @@ const Header: React.FC = ({ children }) => {
     },
     opacity: 1,
     transform: 'translateY(0)',
+    config: config.gentle,
   });
 
   return (
