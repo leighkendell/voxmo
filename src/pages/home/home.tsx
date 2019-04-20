@@ -1,11 +1,13 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Header, Pattern } from '../../components';
+import { Header, ButtonBar, Button } from '../../components';
 
 const Home: React.FC<RouteComponentProps> = () => (
   <>
-    <Pattern />
     <Header>Recordings</Header>
+    <ButtonBar>
+      <Button link="/record">New Recording</Button>
+    </ButtonBar>
   </>
 );
 

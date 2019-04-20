@@ -4,11 +4,13 @@
   display: grid;
   position: sticky;
   bottom: 0;
-  grid-auto-columns: min-content;
   grid-auto-flow: column;
-  justify-content: center;
+  align-content: center;
+  justify-content: space-evenly;
   width: 100%;
+  height: var(--button-bar);
   padding: $spacing-small $spacing-medium;
   column-gap: $spacing-medium;
   background-color: $color-black-pearl;
+  box-shadow: 0 -5px 15px 0 rgba($color-black, 0.05), 0 -10px 35px 0 rgba($color-black, 0.1);
 }

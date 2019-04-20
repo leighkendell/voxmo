@@ -1,10 +1,14 @@
 import React from 'react';
-import { Location, Router } from '@reach/router';
+import { Location, Router, WindowLocation } from '@reach/router';
 import { useTransition, animated } from 'react-spring';
 import styles from './app-router.module.scss';
 
+interface AppRouterProps {
+  location: WindowLocation | undefined;
+}
+
 // TODO: Work out correct typings
-const AnimatedRouter: any = ({ location, children }: any) => {
+const AppRouter: React.FC<any> = ({ children, location }): any => {
   const transitions = useTransition(location, loc => loc.key, {
     from: {
       opacity: 0,
@@ -23,13 +27,5 @@ const AnimatedRouter: any = ({ location, children }: any) => {
     </animated.main>
   ));
 };
-
-const AppRouter: React.FC = ({ children }) => (
-  <Location>
-    {({ location }) => (
-      <AnimatedRouter location={location}>{children}</AnimatedRouter>
-    )}
-  </Location>
-);
 
 export default AppRouter;

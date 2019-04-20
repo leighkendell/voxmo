@@ -9,16 +9,16 @@ interface Props {
   transform?: boolean;
 }
 
-const Pattern: React.FC<Props> = ({ transform }) => {
+const Pattern: React.FC<Props> = ({ transform: shouldTransform }) => {
   const curvedPath =
     'M0,0 L400,0 L400,310.455399 C288.245854,370.1518 202.161711,400 141.747573,400 C81.3334345,400 34.0842435,384.280125 0,352.840376 L0,0 Z';
 
-  const { step } = useSpring({
-    from: {
-      step: 0,
-    },
-    step: transform ? 1 : 0,
-    config: config.wobbly,
+  const { step, transform } = useSpring({
+    step: shouldTransform ? 1 : 0,
+    transform: shouldTransform
+      ? `translateY(calc(100vh - 50vw))`
+      : `translateY(calc(0vh - 0vw))`,
+    config: config.gentle,
   });
 
   // Creates an interpolation from curvedPath to a circle
@@ -44,7 +44,11 @@ const Pattern: React.FC<Props> = ({ transform }) => {
   return (
     <>
       {mask}
-      <div className={styles.pattern} aria-hidden="true" />
+      <animated.div
+        className={styles.pattern}
+        aria-hidden="true"
+        style={{ transform }}
+      />
     </>
   );
 };

@@ -41,3 +41,8 @@ $font-family-default: 'Montserrat', sans-serif;
 // ==========================================================================
 $spacing-small: 25px;
 $spacing-medium: 40px;
+
+:root {
+  --header: 100px;
+  --button-bar: 100px;
+}

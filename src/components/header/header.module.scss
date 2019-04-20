@@ -1,6 +1,7 @@
 @import '../../sass-partials/variables';
 
 .header {
+  height: var(--header);
   padding: $spacing-small;
   text-align: center;
 }

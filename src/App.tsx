@@ -1,14 +1,20 @@
 import React from 'react';
+import { Location } from '@reach/router';
 import { Layout, AppRouter } from './components';
-import { Home } from './pages';
+import { Home, Record } from './pages';
 
 const App: React.FC = () => {
   return (
-    <Layout>
-      <AppRouter>
-        <Home path="/" />
-      </AppRouter>
-    </Layout>
+    <Location>
+      {({ location }) => (
+        <Layout location={location}>
+          <AppRouter location={location}>
+            <Home path="/" />
+            <Record path="record" />
+          </AppRouter>
+        </Layout>
+      )}
+    </Location>
   );
 };
 
