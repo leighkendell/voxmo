@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { AppContext } from '../app-state/app-state';
 
 interface Props {
   stream: MediaStream;
-  recording: boolean;
+  isRecording: boolean;
 }
 
 // Required as there's no typings for MediaRecorder
@@ -12,7 +13,9 @@ declare const MediaRecorder: any;
 let blobs: Blob[];
 let mediaRecorder: any;
 
-const Recorder: React.FC<Props> = ({ stream, recording }) => {
+const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
+  const { addRecording } = useContext(AppContext);
+
   // Start recording
   const start: () => void = () => {
     if (mediaRecorder.state === 'inactive') {
@@ -48,28 +51,32 @@ const Recorder: React.FC<Props> = ({ stream, recording }) => {
     mediaRecorder.onstop = (event: Event) => {
       const blob = new Blob(blobs, { type: 'audio/ogg; codecs=opus' });
 
-      // Navigate to save page
-      console.log('time to nav');
+      // Add new recording
+      if (addRecording) {
+        addRecording(blob).then(recording => {
+          // Navigate to save page
+          console.log('time to nav');
+        });
+      }
     };
 
-    if (recording) {
+    if (isRecording) {
       start();
     }
 
     return () => {
-      // stop();
       destroy();
     };
   }, []);
 
   // Toggle start/stop based on props
   useEffect(() => {
-    if (recording) {
+    if (isRecording) {
       start();
     } else {
       stop();
     }
-  }, [recording]);
+  }, [isRecording]);
 
   return <></>;
 };

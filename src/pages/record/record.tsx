@@ -5,16 +5,16 @@ import { useMediaStream } from '../../hooks';
 
 const Record: React.FC<RouteComponentProps> = () => {
   const stream = useMediaStream();
-  const [recording, setRecording] = useState(true);
+  const [isRecording, setIsRecording] = useState(true);
 
   const onDone: () => void = () => {
-    setRecording(false);
+    setIsRecording(false);
   };
 
   return (
     <>
       <Header>New recording</Header>
-      {stream && <Recorder stream={stream} recording={recording} />}
+      {stream && <Recorder stream={stream} isRecording={isRecording} />}
       <ButtonBar>
         <Button link="/" secondary>
           Cancel

@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 export { default as AppRouter } from './app-router/app-router';
+export { default as AppState } from './app-state/app-state';
 export { default as Button } from './button/button';
 export { default as ButtonBar } from './button-bar/button-bar';
 export { default as CircleButton } from './circle-button/circle-button';
