@@ -17,7 +17,7 @@ const Pattern: React.FC<Props> = ({ transform: shouldTransform }) => {
     step: shouldTransform ? 1 : 0,
     transform: shouldTransform
       ? `translateY(calc(100vh - 50vw))`
-      : `translateY(calc(0vh - 0vw))`,
+      : `translateY(calc(-10vh - 0vw))`,
     config: config.gentle,
   });
 
