@@ -1,0 +1,7 @@
+@import '../../sass-partials/variables';
+
+.main {
+  height: calc(100vh - (var(--header) + var(--button-bar)));
+  padding: 0 $spacing-medium;
+  overflow: auto;
+}

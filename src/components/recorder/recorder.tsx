@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { AppContext } from '../app-state/app-state';
+import { AppContext } from '..';
 
 interface Props {
   stream: MediaStream;

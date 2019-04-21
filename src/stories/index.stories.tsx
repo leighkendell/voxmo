@@ -54,21 +54,21 @@ storiesOf('Summary Card', module)
     <div style={{ padding: '20px', maxWidth: '500px' }}>
       <ProgressBar value={65} />
     </div>
-  ))
-  .add('Card', () => (
-    <div style={spacer}>
-      <SummaryCard
-        title="Dino roar"
-        date="10 September, 2018"
-        audio="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
-      />
-      <SummaryCard
-        title="My cool recording"
-        date="10 September, 2018"
-        audio="https://doc-0c-6c-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/ba2n43tdgk4c47o38eaqtui6bno64u44/1555250400000/16178610560955219818/*/1avt9FBdAM51yKKX6IXActgpsTSio1Eli"
-      />
-    </div>
   ));
+// .add('Card', () => (
+//   <div style={spacer}>
+//     <SummaryCard
+//       title="Dino roar"
+//       date="10 September, 2018"
+//       audio="https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3"
+//     />
+//     <SummaryCard
+//       title="My cool recording"
+//       date="10 September, 2018"
+//       audio="https://doc-0c-6c-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/ba2n43tdgk4c47o38eaqtui6bno64u44/1555250400000/16178610560955219818/*/1avt9FBdAM51yKKX6IXActgpsTSio1Eli"
+//     />
+//   </div>
+// ));
 
 storiesOf('Pattern', module)
   .add('Header', () => (

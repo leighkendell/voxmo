@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Header, ButtonBar, Button } from '../../components';
+import {
+  Header,
+  ButtonBar,
+  Button,
+  AppContext,
+  Main,
+  CardGrid,
+} from '../../components';
 
-const Home: React.FC<RouteComponentProps> = () => (
-  <>
-    <Header>Recordings</Header>
-    <ButtonBar>
-      <Button link="/record">New recording</Button>
-    </ButtonBar>
-  </>
-);
+const Home: React.FC<RouteComponentProps> = () => {
+  const { recordings } = useContext(AppContext);
+
+  return (
+    <>
+      <Header>Recordings</Header>
+      <Main>
+        <CardGrid items={recordings} />
+      </Main>
+      <ButtonBar>
+        <Button link="/record">New recording</Button>
+      </ButtonBar>
+    </>
+  );
+};
 
 export default Home;

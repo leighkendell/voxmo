@@ -1,0 +1,6 @@
+@import '../../sass-partials/variables';
+
+.grid {
+  display: grid;
+  grid-gap: $spacing-small;
+}

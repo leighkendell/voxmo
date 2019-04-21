@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Header, ButtonBar, Button, Recorder } from '../../components';
+import { Header, ButtonBar, Button, Recorder, Main } from '../../components';
 import { useMediaStream } from '../../hooks';
 
 const Record: React.FC<RouteComponentProps> = () => {
@@ -14,7 +14,9 @@ const Record: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Header>New recording</Header>
-      {stream && <Recorder stream={stream} isRecording={isRecording} />}
+      <Main>
+        {stream && <Recorder stream={stream} isRecording={isRecording} />}
+      </Main>
       <ButtonBar>
         <Button link="/" secondary>
           Cancel

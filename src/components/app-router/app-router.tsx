@@ -22,9 +22,9 @@ const AppRouter: React.FC<any> = ({ children, location }): any => {
   });
 
   return transitions.map(({ item, props, key }) => (
-    <animated.main key={key} style={props} className={styles.wrapper}>
+    <animated.div key={key} style={props} className={styles.wrapper}>
       <Router location={item}>{children}</Router>
-    </animated.main>
+    </animated.div>
   ));
 };
 
