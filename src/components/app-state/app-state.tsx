@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import localforage from 'localforage';
 import nanoid from 'nanoid';
 import { Recording } from '../../interfaces';
+import { getBlobDuration } from '../../utils';
 
 interface AppContext {
   recordings: Recording[];
@@ -51,17 +52,21 @@ const AppState: React.FC = ({ children }) => {
 
   // Add a new recording
   const addRecording: AppContext['addRecording'] = async blob => {
+    // Get the duration of the blob
+    const duration = await getBlobDuration(blob);
+
     // Setup new recording object
     const newRecording: Recording = {
       id: nanoid(),
       name: 'New recording',
       date: new Date().toJSON(),
       blob,
+      duration,
     };
     const { id, name, date } = newRecording;
 
     // Update state
-    await localforage.setItem(id, { name, date, blob });
+    await localforage.setItem(id, { name, date, blob, duration });
     setRecordings([newRecording, ...recordings]);
 
     // Return the new recording

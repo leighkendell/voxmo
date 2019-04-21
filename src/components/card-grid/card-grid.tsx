@@ -21,14 +21,15 @@ const CardGrid: React.FC<Props> = ({ items }) => {
   return (
     <div className={styles.grid}>
       {trail.map((props, index) => {
-        const { id, name, date, blob } = items[index];
+        const { id, name, date, blob, duration } = items[index];
 
         return (
           <AnimatedCard
             key={id}
             title={name}
             date={date}
-            audio={blob}
+            blob={blob}
+            duration={duration}
             style={props}
           />
         );

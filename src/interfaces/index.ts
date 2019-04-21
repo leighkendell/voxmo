@@ -5,4 +5,5 @@ export interface Recording {
   name: string;
   blob: Blob;
   date: string;
+  duration: number;
 }
