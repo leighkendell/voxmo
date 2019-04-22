@@ -2,7 +2,8 @@
 
 .wrapper {
   position: relative;
-  margin: $spacing-medium 0;
+  max-width: 400px;
+  margin: $spacing-medium auto;
   border-radius: 1000px;
 }
 

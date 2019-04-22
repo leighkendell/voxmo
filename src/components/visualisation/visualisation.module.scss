@@ -3,4 +3,8 @@
 .canvas {
   width: 100%;
   height: calc(100% - 50vw);
+
+  @media (min-width: 800px) {
+    height: 100%;
+  }
 }

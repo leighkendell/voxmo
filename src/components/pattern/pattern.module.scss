@@ -10,6 +10,10 @@
   background-image: linear-gradient(120deg, $color-electric-violet, $color-cyan);
   clip-path: url(#header-mask);
 
+  @media (min-width: 800px) {
+    display: none;
+  }
+
   &::before,
   &::after {
     content: '';
