@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { AppContext } from '..';
+import { navigate } from '@reach/router';
 
 interface Props {
   stream: MediaStream;
@@ -53,9 +54,9 @@ const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
 
       // Add new recording
       if (addRecording) {
-        addRecording(blob).then(recording => {
+        addRecording(blob).then(({ id }) => {
           // Navigate to save page
-          console.log('time to nav');
+          navigate(`/save/${id}`);
         });
       }
     };

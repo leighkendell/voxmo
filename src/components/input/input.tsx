@@ -3,14 +3,12 @@ import classNames from 'classnames';
 import styles from './input.module.scss';
 import { useUuid } from '../../hooks';
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  type: string;
-  required: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<Props> = ({ label, type, required, onChange }) => {
+const Input: React.FC<Props> = ({ label, onChange, ...props }) => {
   const inputID = useUuid();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -38,10 +36,9 @@ const Input: React.FC<Props> = ({ label, type, required, onChange }) => {
       <input
         id={inputID}
         className={inputClasses}
-        type={type}
-        required={required}
         ref={inputRef}
         onChange={handleChange}
+        {...props}
       />
       <label htmlFor={inputID} className={styles.label}>
         {label}

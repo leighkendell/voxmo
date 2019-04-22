@@ -7,6 +7,11 @@ import { getBlobDuration } from '../../utils';
 interface AppContext {
   recordings: Recording[];
   addRecording?: (blob: Blob) => Promise<Recording>;
+  updateRecordingName?: (
+    recordingId: string,
+    name: string
+  ) => Promise<Recording | null>;
+  deleteRecording?: (recordingId: string) => Promise<Recording[]>;
 }
 
 // Initial context value
@@ -73,9 +78,52 @@ const AppState: React.FC = ({ children }) => {
     return newRecording;
   };
 
+  // Update the name of an existing recording
+  const updateRecordingName: AppContext['updateRecordingName'] = async (
+    recordingId,
+    name
+  ) => {
+    // Existing recordings
+    const existingRecordings = recordings.filter(
+      item => item.id !== recordingId
+    );
+
+    // The recording we're updating
+    const recording = recordings.find(item => item.id === recordingId);
+
+    // Set the recording name and update state
+    if (recording) {
+      recording.name = name;
+      const { id, ...forageProps } = recording;
+      await localforage.removeItem(recordingId);
+      await localforage.setItem(recordingId, forageProps);
+      setRecordings([recording, ...existingRecordings]);
+    }
+
+    return recording || null;
+  };
+
+  // Delete an existing recording
+  const deleteRecording: AppContext['deleteRecording'] = async recordingId => {
+    // Get all the recordings minus the one we want to delte
+    const updatedRecordings = recordings.filter(
+      item => item.id !== recordingId
+    );
+
+    // Remove the recording we want to delete
+    await localforage.removeItem(recordingId);
+
+    // Update state
+    setRecordings(updatedRecordings);
+
+    return updatedRecordings;
+  };
+
   const data: AppContext = {
     recordings,
     addRecording,
+    updateRecordingName,
+    deleteRecording,
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;

@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import classNames from 'classnames';
 import { Link } from '@reach/router';
@@ -8,7 +9,13 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   link?: string;
 }
 
-const Button: React.FC<Props> = ({ children, secondary, link, ...props }) => {
+const Button: React.FC<Props> = ({
+  children,
+  secondary,
+  link,
+  type,
+  ...props
+}) => {
   const className = classNames(styles.button, {
     [styles.secondary]: secondary,
   });
@@ -22,10 +29,14 @@ const Button: React.FC<Props> = ({ children, secondary, link, ...props }) => {
   }
 
   return (
-    <button type="button" className={className} {...props}>
+    <button type={type} className={className} {...props}>
       {children}
     </button>
   );
+};
+
+Button.defaultProps = {
+  type: 'button',
 };
 
 export default Button;
