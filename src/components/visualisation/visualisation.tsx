@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useSpring, animated } from 'react-spring';
 import styles from './visualisation.module.scss';
 
 interface Props {
@@ -12,6 +13,17 @@ const Visualisation: React.FC<Props> = ({ stream }) => {
   const scale = window.devicePixelRatio;
   const width = window.innerWidth * scale;
   const height = window.innerHeight * scale;
+
+  // Entry animation
+  const spring = useSpring({
+    from: {
+      opacity: 0,
+      transform: 'scaleY(0)',
+    },
+    opacity: 1,
+    transform: 'scaleY(1)',
+    delay: 250,
+  });
 
   useEffect(() => {
     // Create a new audio context and set up the options
@@ -70,11 +82,12 @@ const Visualisation: React.FC<Props> = ({ stream }) => {
   }, []);
 
   return (
-    <canvas
+    <animated.canvas
       ref={canvasEl}
       width={width}
       height={height}
       className={styles.canvas}
+      style={spring}
     />
   );
 };
