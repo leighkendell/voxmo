@@ -1,22 +1,30 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useContext } from 'react';
 import throttle from 'lodash/throttle';
 import { format } from 'date-fns';
 import styles from './summary-card.module.scss';
-import { KebabMenuItem, KebabMenu, CircleButton, ProgressBar } from '..';
+import {
+  KebabMenuItem,
+  KebabMenu,
+  CircleButton,
+  ProgressBar,
+  AppContext,
+} from '..';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   date: string;
   blob: Blob;
+  recordingId: string;
   duration: number;
 }
 
 const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
-  ({ title, date, blob, duration }, ref) => {
+  ({ title, date, blob, duration, recordingId }, ref) => {
     // State
     const [playing, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+    const { deleteRecording } = useContext(AppContext);
 
     // Ref to audio element used for playback
     const audioEl = useRef<HTMLAudioElement>(null);
@@ -74,6 +82,13 @@ const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
       }
     };
 
+    // Delete this recording
+    const handleDelete: (recordingId: string) => void = recordingId => {
+      if (deleteRecording) {
+        deleteRecording(recordingId);
+      }
+    };
+
     return (
       <div className={styles.card} ref={ref}>
         <CircleButton
@@ -88,8 +103,9 @@ const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
         <audio ref={audioEl} src={src} />
         <ProgressBar value={progress} />
         <KebabMenu>
-          <KebabMenuItem>Rename</KebabMenuItem>
-          <KebabMenuItem>Delete</KebabMenuItem>
+          <KebabMenuItem onClick={() => handleDelete(recordingId)}>
+            Delete
+          </KebabMenuItem>
         </KebabMenu>
       </div>
     );
