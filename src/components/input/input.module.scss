@@ -1,7 +1,6 @@
 @import '../../sass-partials/variables';
 
 .wrapper {
-  display: inline-block;
   position: relative;
   margin: $spacing-medium 0;
   border-radius: 1000px;
@@ -41,6 +40,7 @@
 
 .input {
   display: block;
+  width: 100%;
   padding: 1.5em 2em;
   transition: border-color 0.25s ease-in-out;
   border: 0;

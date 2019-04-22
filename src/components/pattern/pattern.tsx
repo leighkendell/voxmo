@@ -16,8 +16,8 @@ const Pattern: React.FC<Props> = ({ transform: shouldTransform }) => {
   const { step, transform } = useSpring({
     step: shouldTransform ? 1 : 0,
     transform: shouldTransform
-      ? `translateY(calc(100vh - 50vw))`
-      : `translateY(calc(-10vh - 0vw))`,
+      ? `translateY(calc(100vh - 50vw - var(--button-bar)))`
+      : `translateY(calc(0vh - 0vw - var(--button-bar)))`,
     config: config.gentle,
   });
 
