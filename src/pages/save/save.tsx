@@ -41,23 +41,19 @@ const Save: React.FC<Props> = ({ recordingId }) => {
     <>
       <Header>Save recording</Header>
       <Main>
-        <form>
-          <Input
-            label="Recording name"
-            type="text"
-            value={name}
-            required
-            onChange={handleNameChange}
-          />
-        </form>
+        <Input
+          label="Recording name"
+          type="text"
+          value={name}
+          required
+          onChange={handleNameChange}
+        />
       </Main>
       <ButtonBar>
         <Button secondary onClick={onDiscard}>
           Discard
         </Button>
-        <Button onClick={onSave} type="submit">
-          Save
-        </Button>
+        <Button onClick={onSave}>Save</Button>
       </ButtonBar>
     </>
   );
