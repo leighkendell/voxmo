@@ -15,7 +15,9 @@ import {
   ButtonBar,
   Header,
   Input,
+  Visualisation,
 } from '../components';
+import { useMediaStream } from '../hooks';
 
 addParameters({ options: { theme: themes.dark } });
 
@@ -103,3 +105,15 @@ storiesOf('Header', module)
 storiesOf('Forms', module).add('Input', () => (
   <Input label="Recording name" type="text" required />
 ));
+
+storiesOf('Visualisation', module).add('Default', () => {
+  const Stream: React.FC = ({ children }) => {
+    const stream = useMediaStream();
+    if (stream) {
+      return <Visualisation stream={stream} />;
+    }
+    return null;
+  };
+
+  return <Stream />;
+});

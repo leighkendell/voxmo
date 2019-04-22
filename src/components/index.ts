@@ -16,3 +16,4 @@ export { default as Pattern } from './pattern/pattern';
 export { default as ProgressBar } from './progress-bar/progress-bar';
 export { default as Recorder } from './recorder/recorder';
 export { default as SummaryCard } from './summary-card/summary-card';
+export { default as Visualisation } from './visualisation/visualisation';
