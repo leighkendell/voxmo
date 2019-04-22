@@ -42,6 +42,7 @@
 
 .menu {
   position: absolute;
+  z-index: 1;
   top: $spacing-small / 1.5;
   right: 0;
   width: 160px;

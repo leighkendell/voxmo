@@ -5,19 +5,29 @@ const useMediaStream: (
 ) => MediaStream | null = onError => {
   const [stream, setStream] = useState<MediaStream | null>(null);
 
-  const getStream: () => void = async () => {
-    try {
-      const audio = await navigator.mediaDevices.getUserMedia({ audio: true });
-      setStream(audio);
-    } catch {
-      if (onError) {
-        onError();
-      }
-    }
-  };
-
   useEffect(() => {
-    getStream();
+    let audio: MediaStream | null;
+
+    // Set up the media stream
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(mediaStream => {
+        audio = mediaStream;
+        setStream(audio);
+      })
+      .catch(() => {
+        audio = null;
+        if (onError) {
+          onError();
+        }
+      });
+
+    // Stop the media stream
+    return () => {
+      if (audio) {
+        audio.getAudioTracks().forEach(track => track.stop());
+      }
+    };
   }, []);
 
   return stream;
