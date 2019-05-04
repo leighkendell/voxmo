@@ -3,4 +3,8 @@
 .grid {
   display: grid;
   grid-gap: $spacing-small;
+
+  > * {
+    opacity: 0;
+  }
 }

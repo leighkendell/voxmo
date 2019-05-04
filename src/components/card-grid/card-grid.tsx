@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { animated, useTrail, config, useSpring } from 'react-spring';
+import { animated, config, useTransition } from 'react-spring';
 import { getTime } from 'date-fns';
 import styles from './card-grid.module.scss';
 import { Recording } from '../../interfaces';
@@ -17,21 +17,18 @@ const CardGrid: React.FC<Props> = ({ items }) => {
     [items]
   );
 
-  const spring = useSpring({
-    from: { transform: 'translateX(-40px)' },
-    transform: 'translateX(0)',
-  });
-
-  const trail = useTrail(sortedItems.length, {
-    from: { opacity: 0 },
-    opacity: 1,
+  const transition = useTransition(sortedItems, item => item.id, {
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0)' },
     config: config.gentle,
+    trail: 500 / sortedItems.length,
   });
 
   return (
-    <animated.div className={styles.grid} style={spring}>
-      {trail.map((props, index) => {
-        const { id, name, date, blob, duration } = sortedItems[index];
+    <div className={styles.grid}>
+      {transition.map(({ item, props }) => {
+        const { id, name, date, blob, duration } = item;
 
         return (
           <AnimatedCard
@@ -45,7 +42,7 @@ const CardGrid: React.FC<Props> = ({ items }) => {
           />
         );
       })}
-    </animated.div>
+    </div>
   );
 };
 
