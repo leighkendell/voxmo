@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { animated, config, useTransition } from 'react-spring';
+import { animated, useTransition } from 'react-spring';
 import { getTime } from 'date-fns';
 import styles from './card-grid.module.scss';
 import { Recording } from '../../interfaces';
@@ -18,10 +18,15 @@ const CardGrid: React.FC<Props> = ({ items }) => {
   );
 
   const transition = useTransition(sortedItems, item => item.id, {
-    from: { opacity: 0, transform: 'scale(0)' },
+    from: { opacity: 0, transform: 'scale(0)', height: 110 },
     enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' },
-    config: config.gentle,
+    leave: {
+      opacity: 0,
+      transform: 'scale(0)',
+      height: 0,
+      padding: 0,
+      margin: 0,
+    },
     trail: 500 / sortedItems.length,
   });
 
