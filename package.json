@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "@types/jest": "24.0.11",
+    "@types/jest": "24.0.12",
     "@types/lodash": "^4.14.123",
-    "@types/node": "11.13.6",
+    "@types/node": "12.0.0",
     "@types/reach__router": "^1.2.4",
-    "@types/react": "16.8.14",
+    "@types/react": "16.8.16",
     "@types/react-dom": "16.8.4",
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
@@ -16,12 +16,12 @@
     "localforage": "^1.7.3",
     "lodash": "^4.17.11",
     "nanoid": "^2.0.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
-    "react-spring": "^8.0.19",
-    "typescript": "3.4.4"
+    "react-scripts": "3.0.0",
+    "react-spring": "^8.0.20",
+    "typescript": "3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,12 +41,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-info": "^5.0.10",
-    "@storybook/addon-links": "^5.0.10",
-    "@storybook/addons": "^5.0.10",
-    "@storybook/react": "^5.0.10",
+    "@babel/core": "^7.4.4",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-info": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/react": "^5.0.11",
     "@types/classnames": "^2.2.7",
     "@types/nanoid": "^1.2.1",
     "@types/storybook__addon-actions": "^3.4.2",
@@ -54,13 +54,14 @@
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "babel-loader": "^8.0.5",
     "eslint-config-airbnb-typescript": "^3.0.0",
-    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-react-app": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.17.0",
     "react-docgen-typescript-loader": "^3.1.0",
     "stylelint": "^10.0.1",
     "stylelint-config-property-sort-order-smacss": "^4.0.2",
     "stylelint-config-standard": "^18.3.0",
-    "stylelint-scss": "^3.6.0"
+    "stylelint-scss": "^3.6.1"
   }
 }

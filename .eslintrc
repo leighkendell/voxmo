@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "react-app",
+    "eslint-config-airbnb-typescript",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true
+      }
+    ],
+    "no-plusplus": "off",
+    "import/no-cycle": "off",
+    "react/prop-types": "off"
+  }
+}
