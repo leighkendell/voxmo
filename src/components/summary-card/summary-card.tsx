@@ -39,6 +39,8 @@ const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
 
     // Add event listeners to handle playback progress and end of playback
     useEffect(() => {
+      const el = audioEl.current;
+
       // Set playing state when playback ends
       const handleEnded: () => void = () => {
         setPlaying(false);
@@ -46,28 +48,25 @@ const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
 
       // Set progress state every 'timeupdate' event
       const handleTimeUpdate: () => void = () => {
-        if (audioEl.current) {
-          setProgress((audioEl.current.currentTime / duration) * 100);
+        if (el) {
+          setProgress((el.currentTime / duration) * 100);
         }
       };
 
       // Add listeners
-      if (audioEl.current) {
-        audioEl.current.addEventListener('ended', handleEnded);
-        audioEl.current.addEventListener(
-          'timeupdate',
-          throttle(handleTimeUpdate, 250)
-        );
+      if (el) {
+        el.addEventListener('ended', handleEnded);
+        el.addEventListener('timeupdate', throttle(handleTimeUpdate, 250));
       }
 
       // Clean up listeners
       return () => {
-        if (audioEl.current) {
-          audioEl.current.removeEventListener('ended', handleEnded);
-          audioEl.current.removeEventListener('timeupdate', handleTimeUpdate);
+        if (el) {
+          el.removeEventListener('ended', handleEnded);
+          el.removeEventListener('timeupdate', handleTimeUpdate);
         }
       };
-    }, []);
+    }, [duration]);
 
     // Toggle playback state and audio
     const togglePlayBack: () => void = async () => {
@@ -83,9 +82,9 @@ const SummaryCard: React.FC<Props> = React.forwardRef<HTMLDivElement, Props>(
     };
 
     // Delete this recording
-    const handleDelete: (recordingId: string) => void = recordingId => {
+    const handleDelete: (id: string) => void = id => {
       if (deleteRecording) {
-        deleteRecording(recordingId);
+        deleteRecording(id);
       }
     };
 

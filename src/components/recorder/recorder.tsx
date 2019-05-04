@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useMemo, useCallback } from 'react';
 import { AppContext } from '..';
 import { navigate } from '@reach/router';
 
@@ -12,36 +12,32 @@ declare const MediaRecorder: any;
 
 // Globals
 let blobs: Blob[];
-let mediaRecorder: any;
+// let mediaRecorder: any;
 
 const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
   const { addRecording } = useContext(AppContext);
+  const mediaRecorder = useMemo(
+    () => new MediaRecorder(stream, { mimeType: 'audio/webm' }),
+    [stream]
+  );
 
   // Start recording
-  const start: () => void = () => {
+  const start: () => void = useCallback(() => {
     if (mediaRecorder.state === 'inactive') {
       mediaRecorder.start(1000);
     }
-  };
+  }, [mediaRecorder]);
 
   // Stop recording
-  const stop: () => void = () => {
+  const stop: () => void = useCallback(() => {
     if (mediaRecorder.state === 'recording') {
       mediaRecorder.stop();
     }
-  };
-
-  // Destroy MediaRecorder instance
-  const destroy: () => void = () => {
-    mediaRecorder.ondataavailable = null;
-    mediaRecorder.onstop = null;
-    stop();
-  };
+  }, [mediaRecorder]);
 
   // Initial setup
   useEffect(() => {
     blobs = [];
-    mediaRecorder = new MediaRecorder(stream);
 
     // Add to the blobs array when new data becomes available
     mediaRecorder.ondataavailable = (blobEvent: any) => {
@@ -50,7 +46,7 @@ const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
 
     // Save recorded blobs to state when recording stops
     mediaRecorder.onstop = (event: Event) => {
-      const blob = new Blob(blobs, { type: 'audio/ogg; codecs=opus' });
+      const blob = new Blob(blobs, { type: 'audio/webm' });
 
       // Add new recording
       if (addRecording) {
@@ -61,14 +57,13 @@ const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
       }
     };
 
-    if (isRecording) {
-      start();
-    }
-
     return () => {
-      destroy();
+      // Destroy MediaRecorder instance
+      mediaRecorder.ondataavailable = null;
+      mediaRecorder.onstop = null;
+      stop();
     };
-  }, []);
+  }, [addRecording, mediaRecorder, start, stop]);
 
   // Toggle start/stop based on props
   useEffect(() => {
@@ -77,7 +72,7 @@ const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
     } else {
       stop();
     }
-  }, [isRecording]);
+  }, [isRecording, start, stop]);
 
   return <></>;
 };

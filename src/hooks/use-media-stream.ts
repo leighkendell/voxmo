@@ -28,7 +28,7 @@ const useMediaStream: (
         audio.getAudioTracks().forEach(track => track.stop());
       }
     };
-  }, []);
+  }, [onError]);
 
   return stream;
 };

@@ -79,7 +79,7 @@ const Visualisation: React.FC<Props> = ({ stream }) => {
         update();
       }
     }
-  }, []);
+  }, [height, scale, stream, width]);
 
   return (
     <animated.canvas
