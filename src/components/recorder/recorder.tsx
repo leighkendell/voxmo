@@ -16,15 +16,12 @@ let blobs: Blob[];
 
 const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
   const { addRecording } = useContext(AppContext);
-  const mediaRecorder = useMemo(
-    () => new MediaRecorder(stream, { mimeType: 'audio/webm' }),
-    [stream]
-  );
+  const mediaRecorder = useMemo(() => new MediaRecorder(stream), [stream]);
 
   // Start recording
   const start: () => void = useCallback(() => {
     if (mediaRecorder.state === 'inactive') {
-      mediaRecorder.start(1000);
+      mediaRecorder.start();
     }
   }, [mediaRecorder]);
 
@@ -46,7 +43,7 @@ const Recorder: React.FC<Props> = ({ stream, isRecording }) => {
 
     // Save recorded blobs to state when recording stops
     mediaRecorder.onstop = (event: Event) => {
-      const blob = new Blob(blobs, { type: 'audio/webm' });
+      const blob = new Blob(blobs, { type: mediaRecorder.mimeType });
 
       // Add new recording
       if (addRecording) {
